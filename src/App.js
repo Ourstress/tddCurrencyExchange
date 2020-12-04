@@ -5,11 +5,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 function App() {
+  const [rates, setRates] = useState({ CAD: 1.2944637825 });
   useEffect(() => {
     const exchangeUrl = "https://api.exchangeratesapi.io/latest?base=USD";
-    axios.get(exchangeUrl);
+    axios.get(exchangeUrl).then((response) => setRates(response.data));
   });
-  const [rates, setRates] = useState({ CAD: 1.2944637825 });
   return (
     <div className="App">
       <header className="App-header">
