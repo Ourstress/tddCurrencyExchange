@@ -1,6 +1,5 @@
 import { render } from "@testing-library/react";
 import CurrencyDropdown from "./currencyDropdown";
-import axios from "axios";
 
 const rates = {
   CAD: 1.2944637825,
@@ -44,4 +43,13 @@ test("select and option elements rendered", () => {
   const expectedNumberOfOptions = 33;
   const totalOptionElements = selectElement.querySelectorAll("option");
   expect(totalOptionElements.length).toEqual(expectedNumberOfOptions);
+});
+
+// add h2 element to display currently selected currency in future and h3 element to display base currency - USD
+test("h2 and h3 elements rendered and h3 element displays USD", () => {
+  const { container } = render(<CurrencyDropdown data={rates} />);
+  const baseCurrencyElement = container.querySelector("h3");
+  expect(container.querySelector("h2")).toBeTruthy();
+  expect(baseCurrencyElement).toBeTruthy();
+  expect(baseCurrencyElement.innerHTML).toContain("USD");
 });
