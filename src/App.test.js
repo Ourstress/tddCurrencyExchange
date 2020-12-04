@@ -1,8 +1,11 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render } from "@testing-library/react";
+import App from "./App";
+import axios from "axios";
 
-test('renders learn react link', () => {
+test("connected to exchange rate API", () => {
+  const rateApi = "https://api.exchangeratesapi.io/latest?base=USD";
+  const axiosSpy = jest.spyOn(axios, "get");
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+
+  expect(axiosSpy).toBeCalledWith(rateApi);
 });
