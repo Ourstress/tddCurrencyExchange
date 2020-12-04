@@ -2,13 +2,14 @@ import logo from "./logo.svg";
 import "./App.css";
 import CurrencyDropdown from "./components/currencyDropdown";
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 function App() {
   useEffect(() => {
     const exchangeUrl = "https://api.exchangeratesapi.io/latest?base=USD";
     axios.get(exchangeUrl);
   });
+  const [rates, setRates] = useState({});
   return (
     <div className="App">
       <header className="App-header">
