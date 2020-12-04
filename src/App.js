@@ -9,12 +9,12 @@ function App() {
     const exchangeUrl = "https://api.exchangeratesapi.io/latest?base=USD";
     axios.get(exchangeUrl);
   });
-  const [rates, setRates] = useState({});
+  const [rates, setRates] = useState({ CAD: 1.2944637825 });
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <CurrencyDropdown data={{ CAD: 1.2944637825 }} />
+        <CurrencyDropdown data={rates} />
         <a
           className="App-link"
           href="https://reactjs.org"
