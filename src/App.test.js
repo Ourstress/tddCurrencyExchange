@@ -38,7 +38,7 @@ test("data from axios stored in useState hook", async () => {
   const axiosSpy = jest
     .spyOn(axios, "get")
     .mockReturnValue(
-      Promise.resolve({ data: { FakeCurrencyInitials: 123.111999 } })
+      Promise.resolve({ data: { rates: { FakeCurrencyInitials: 123.111999 } } })
     );
   render(<App />);
   await waitFor(() =>

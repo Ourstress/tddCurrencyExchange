@@ -8,7 +8,7 @@ function App() {
   const [rates, setRates] = useState({ CAD: 1.2944637825 });
   useEffect(() => {
     const exchangeUrl = "https://api.exchangeratesapi.io/latest?base=USD";
-    axios.get(exchangeUrl).then((response) => setRates(response.data));
+    axios.get(exchangeUrl).then((response) => setRates(response.data.rates));
   });
   return (
     <div className="App">
