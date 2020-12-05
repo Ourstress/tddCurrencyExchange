@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, fireEvent, waitFor } from "@testing-library/react";
 import CurrencyDropdown from "./currencyDropdown";
 
 const rates = {
@@ -52,4 +52,22 @@ test("h2 and h3 elements rendered and h3 element displays USD", () => {
   expect(container.querySelector("h2")).toBeTruthy();
   expect(baseCurrencyElement).toBeTruthy();
   expect(baseCurrencyElement.innerHTML).toContain("USD");
+});
+
+// next step is to link up selected currency with h2 element innerHTML
+test("currently selected currency is displayed dynamically in h2 element", async () => {
+  // setup tests
+  const { container } = render(<CurrencyDropdown data={rates} />);
+  const selectElement = container.querySelector("select");
+  const selectedCurrencyElement = container.querySelector("#selectedCurrency");
+  const newSelectedCurrency = "ISK";
+  // expect newSelectedCurrency to not be selected initially
+  expect(selectedCurrencyElement.innerHTML).not.toBe(newSelectedCurrency);
+  // fire change event for select element
+  await waitFor(() =>
+    fireEvent.change(selectElement, { target: { value: newSelectedCurrency } })
+  );
+  // check UI for changes
+  const selectedCurrencyElement2 = container.querySelector("#selectedCurrency");
+  expect(selectedCurrencyElement2.innerHTML).toContain(newSelectedCurrency);
 });
