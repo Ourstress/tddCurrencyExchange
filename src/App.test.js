@@ -11,27 +11,7 @@ test("connected to exchange rate API", () => {
   axiosSpy.mockRestore();
 });
 
-// Following test on axios,get, I want to test that useState was implemented as a preliminary to storing data through useState
-test("useState implemented", () => {
-  const useStateSpy = jest.spyOn(React, "useState");
-  render(<App />);
-  expect(useStateSpy).toBeCalled();
-  useStateSpy.mockRestore();
-});
-
-// Check that useState is linked to UI by mocking some values for useState
-test("useState linked to UI", () => {
-  const useStateSpy = jest
-    .spyOn(React, "useState")
-    .mockImplementation(() => [
-      { FakeCurrencyInitials: 123.111999 },
-      jest.fn(),
-    ]);
-  render(<App />);
-  expect(useStateSpy).toBeCalledTimes(1);
-  expect(screen.getByText("FakeCurrencyInitials")).toBeInTheDocument();
-  useStateSpy.mockRestore();
-});
+// Removed previous tests here that were testing useState because they were messy and redundant
 
 // Check that data from axios is being stored in useState by mocking axios.get
 test("data from axios stored in useState hook", async () => {
