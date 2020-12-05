@@ -5,8 +5,8 @@ function CurrencyDropdown(props) {
   const [selectedRate, setSelectedRate] = useState(0);
   return (
     <section>
+      <h3>1 USD</h3>
       <h2 id="selectedCurrency">{selectedRate}</h2>
-      <h3>USD</h3>
       <select
         onChange={(e) => {
           setSelectedRate(e.target.value);
