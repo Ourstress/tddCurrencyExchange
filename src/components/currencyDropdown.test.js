@@ -71,3 +71,16 @@ test("currently selected currency is displayed dynamically in h2 element", async
   const selectedCurrencyElement2 = container.querySelector("#selectedCurrency");
   expect(selectedCurrencyElement2.innerHTML).toContain(newSelectedCurrency);
 });
+
+test("when no data is retrieved from api, selected currency h3 element displays nothing", async () => {
+  // pass in empty object {} to simulate no data retrieved
+  const { container } = render(<CurrencyDropdown data={{}} />);
+  const selectedCurrencyElement = container.querySelector("#selectedCurrency");
+  expect(selectedCurrencyElement.innerHTML).toBe("");
+});
+
+test("When data retrieved from API, the topmost option CAD is displayed by default", async () => {
+  const { container } = render(<CurrencyDropdown data={rates} />);
+  const selectedCurrencyElement = container.querySelector("#selectedCurrency");
+  expect(selectedCurrencyElement.innerHTML).toContain(Object.keys(rates)[0]);
+});

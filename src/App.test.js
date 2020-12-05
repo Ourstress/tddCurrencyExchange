@@ -22,7 +22,7 @@ test("data from axios stored in useState hook", async () => {
     );
   render(<App />);
   await waitFor(() =>
-    expect(screen.getByText("FakeCurrencyInitials")).toBeInTheDocument()
+    expect(screen.getAllByText("FakeCurrencyInitials")).toBeTruthy()
   );
   axiosSpy.mockRestore();
 });
