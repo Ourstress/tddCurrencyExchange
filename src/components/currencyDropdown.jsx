@@ -7,7 +7,11 @@ function CurrencyDropdown(props) {
     <section>
       <h3>1 USD</h3>
       <h2 id="selectedCurrency">
-        {rates ? (selectedRate ? selectedRate : Object.keys(rates)[0]) : ""}
+        {Object.keys(rates).length !== 0
+          ? selectedRate
+            ? `${rates[selectedRate]} ${selectedRate}`
+            : `${rates[Object.keys(rates)[0]]} ${Object.keys(rates)[0]}`
+          : ""}
       </h2>
       <select
         onChange={(e) => {

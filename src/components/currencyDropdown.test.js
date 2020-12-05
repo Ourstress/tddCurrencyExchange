@@ -84,3 +84,11 @@ test("When data retrieved from API, the topmost option CAD is displayed by defau
   const selectedCurrencyElement = container.querySelector("#selectedCurrency");
   expect(selectedCurrencyElement.innerHTML).toContain(Object.keys(rates)[0]);
 });
+
+test("exchange rate is reflected alongside currency initials", async () => {
+  const { container } = render(<CurrencyDropdown data={rates} />);
+  const selectedCurrencyElement = container.querySelector("#selectedCurrency");
+  expect(selectedCurrencyElement.innerHTML).toContain(
+    rates[Object.keys(rates)[0]]
+  );
+});
